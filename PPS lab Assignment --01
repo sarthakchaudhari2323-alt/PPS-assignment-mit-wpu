@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Predefined valid credentials for simulation
+    char valid_email[] = "student@gmail.com";
+    char valid_password[] = "mitwpu123";
+
+    char email[100];
+    char password[100];
+
+    printf("=== Gmail Login Simulation ===\n");
+
+    // Step 1: Email Verification Loop
+    while (1) {
+        printf("\nEnter your Email or Phone: ");
+        scanf("%s", email);
+
+        if (strcmp(email, valid_email) == 0) {
+            printf("Email verified! Proceeding to password...\n");
+            break; // Exit loop if email is valid
+        } else {
+            printf("Error: Couldn't find your Google Account. Try again.\n");
+        }
+    }
+
+    // Step 2: Password Verification Loop
+    while (1) {
+        printf("\nEnter your Password: ");
+        scanf("%s", password);
+
+        if (strcmp(password, valid_password) == 0) {
+            printf("\nLogin Successful! Displaying Gmail Inbox...\n");
+            break; // Exit loop if password is valid
+        } else {
+            printf("Error: Wrong password. Try again.\n");
+        }
+    }
+
+    return 0;
+}
