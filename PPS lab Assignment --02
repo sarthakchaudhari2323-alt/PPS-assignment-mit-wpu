@@ -2,7 +2,7 @@
 
 int main() {
     int num1, num2, num3;
-
+ 
     // Input: Enter any three numbers
     printf("Enter any three numbers: ");
     scanf("%d %d %d", &num1, &num2, &num3);
