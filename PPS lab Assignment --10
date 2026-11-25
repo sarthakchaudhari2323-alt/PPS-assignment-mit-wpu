@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+// Function to check if a year is a leap year
+int isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+// Function to get the starting day of the year (0 = Sunday, 1 = Monday, ..., 6 = Saturday)
+int getFirstDayOfYear(int year) {
+    int d = (((year - 1) * 365) + ((year - 1) / 4) - ((year - 1) / 100) + ((year - 1) / 400) + 1) % 7;
+    return d;
+}
+
+int main() {
+    int year, month, day, daysInMonth, weekDay = 0, startingDay;
+
+    char *months[] = {
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    };
+
+    int monthDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    printf("Enter a year: ");
+    scanf("%d", &year);
+
+    // Adjust February days if it is a leap year
+    if (isLeapYear(year)) {
+        monthDays[1] = 29;
+    }
+
+    // Find the first day of January for the given year
+    startingDay = getFirstDayOfYear(year);
+
+    for (month = 0; month < 12; month++) {
+        daysInMonth = monthDays[month];
+
+        printf("\n\n  ------------%s %d------------\n", months[month], year);
+        printf("  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n");
+
+        // Print leading spaces for the first week
+        for (weekDay = 0; weekDay < startingDay; weekDay++) {
+            printf("     ");
+        }
+
+        // Print all days of the current month
+        for (day = 1; day <= daysInMonth; day++) {
+            printf("%5d", day);
+
+            if (++weekDay > 6) {
+                printf("\n");
+                weekDay = 0;
+            }
+            startingDay = weekDay;
+        }
+    }
+    printf("\n");
+    return 0;
+}
